@@ -64,3 +64,5 @@ plugins:
   - jekyll-feed
   - jekyll-readme-index
   - jemoji
+dir_chdir:
+  - /github/workspace/
