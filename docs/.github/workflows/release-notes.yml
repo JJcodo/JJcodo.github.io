@@ -1,9 +1,9 @@
-name: Release notes
+name: JJcodo Blog
 
 on:
   push:
     branches:
-      - master
+      - page
 
 jobs:
   update_release_draft:

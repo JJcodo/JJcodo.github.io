@@ -1,7 +1,7 @@
 # Setup
 title: JJcodo
 description: 最幸福的事情是睡到自然醒和躺下就入睡
-url: https://vszhub.github.io
+url: https://jjcodo.github.io/
 avatar: /avatar.jpeg
 paginate: 5
 permalink: pretty
@@ -26,8 +26,6 @@ exclude:
   - README.md
   - scripts/
   - not-pure-poole.gemspec
-
-# Optimize Jekyl SEO Tag
 twitter:
   username: Daniel
   card: summary
@@ -37,23 +35,14 @@ social:
   links:
     - https://twitter.com/vszhub
     - https://github.com/vszhub
-google_site_verification: xxxxx
-lang: en
 
+google_site_verification: xxxxx
+lang: zh-CN
 sass:
   sass_dir: _sass
   style: :compressed
 
-# Options
-
-# Replace this value and uncomment to enable Google Analytics tracking
-# google_analytics: UA-000000-0
-
-# Replace this value and uncomment to enable Disqus
-# disqus: xxxxxx
-
-# Specify the author for blog posts
 author:
   name: Daniel
-  url: https://github.com/vszhub/
-  email: vszhub@gmail.com
+  url: https://jjcodo.github.io/
+  email: danielcoder@foxmail.com
