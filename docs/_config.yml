@@ -1,6 +1,6 @@
 # Setup
-title: Not Pure Poole
-description: A simple, beautiful, and powerful Jekyll theme for blogs
+title: JJcodo
+description: 最幸福的事情是睡到自然醒和躺下就入睡
 url: https://vszhub.github.io
 avatar: /avatar.jpeg
 paginate: 5
@@ -29,11 +29,11 @@ exclude:
 
 # Optimize Jekyl SEO Tag
 twitter:
-  username: vszhub
+  username: Daniel
   card: summary
 logo: logo.png
 social:
-  name: Songzi Vong
+  name: Daniel
   links:
     - https://twitter.com/vszhub
     - https://github.com/vszhub
@@ -54,6 +54,6 @@ sass:
 
 # Specify the author for blog posts
 author:
-  name: Songzi Vong
+  name: Daniel
   url: https://github.com/vszhub/
   email: vszhub@gmail.com

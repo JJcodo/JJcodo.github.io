@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["JJ"]
   spec.email         = ["danielcoder@foxmail.com"]
 
-  spec.summary       = "最幸福的事是睡到自然醒，躺下就能睡"
+  spec.summary       = "最幸福的事是睡到自然醒和躺下就能睡"
   spec.homepage      = "https://github.com/vszhub/not-pure-jekyll"
   spec.license       = "GPL"
 
