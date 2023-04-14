@@ -27,3 +27,4 @@ jobs:
           JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
         with:
           token: ${{ secrets.GH_TOKEN }}
+          target_branch: 'pages'
