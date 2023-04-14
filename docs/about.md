@@ -1,0 +1,1 @@
+Some notes and thoughts about linux kernel
