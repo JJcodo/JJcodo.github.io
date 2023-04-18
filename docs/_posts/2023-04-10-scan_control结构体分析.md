@@ -21,7 +21,7 @@ kswapd_shrink_node
 	return sc->nr_scanned >= sc->nr_to_reclaim;
 ```
 
-2、target_mem_cgroup记录的是memcg根节点的memcg的地址,其设置路劲如下所示
+2、target_mem_cgroup记录的是要回收的目标memcg，目前此节点已经不再起作用的，他记录的是memcg根节点的memcg的地址,其设置路劲如下所示,但是这个节点是root节点。
 
 ```
 shrink_node
@@ -32,7 +32,50 @@ shrink_node
 
 3、anon_cost和file_cost
 
+​		`anon_cost`参数是指扫描匿名内存所需的成本，而`file_cost`参数是指扫描文件所需的成本。
+
+ prepare_scan_count中使用共享的LRU链表设置scan_control的anon_cost和file_cost的值，对于anon_cost这个值，其越小会导致匿名页更容易被回收，越大会导致文件页越容易被回收。其生效的过程如下。
+
 ```c
+/*
+	在prepare_scan_count中对其进行初始化，赋值
+*/
+prepare_scan_count(){
+    sc->anon_cost = target_lruvec->anon_cost;
+	sc->file_cost = target_lruvec->file_cost;
+}
+/*
+	在get_scan_count中被使用,
+	目前一般使用swappiness来控制扫描文件页和匿名页的数量。
+*/
+get_scan_count(){
+    
+    total_cost = sc->anon_cost + sc->file_cost;
+	anon_cost = total_cost + sc->anon_cost;
+	file_cost = total_cost + sc->file_cost;
+	total_cost = anon_cost + file_cost;
+
+	ap = swappiness * (total_cost + 1);
+	ap /= anon_cost + 1;
+
+	fp = (200 - swappiness) * (total_cost + 1);
+	fp /= file_cost + 1;
+
+	fraction[0] = ap;
+	fraction[1] = fp;
+	denominator = ap + fp;
+    			scan = mem_cgroup_online(memcg) ?
+			       div64_u64(scan * fraction[file], denominator) :
+			       DIV64_U64_ROUND_UP(scan * fraction[file],denominator);
+}
+```
+
+3、 `may_deactivate`是一个长度为 2 位的无符号整型变量。
+
+
+
+```c
+
 #define SWAP_CLUSTER_MAX 32UL
 struct scan_control {
 	unsigned long nr_to_reclaim;
@@ -78,5 +121,31 @@ struct scan_control {
 	} nr;
 	struct reclaim_state reclaim_state;
 };
+```
+
+
+
+
+
+```c
+static unsigned long shrink_zone(int priority, struct zone *zone,
+                  struct scan_control *sc)
+{
+    unsigned long nr_reclaimed = 0;
+
+    /* Check if we should reclaim only target cgroup */
+    if (sc->target_mem_cgroup) {
+        nr_reclaimed = shrink_mem_cgroup_zone(priority, zone,
+                            sc->target_mem_cgroup,
+                            sc->nr_scanned);
+    } else {
+        nr_reclaimed = shrink_zone_scan(zone, sc, priority);
+    }
+
+    /* ... */
+
+    return nr_reclaimed;
+}
+
 ```
 
