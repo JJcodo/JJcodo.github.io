@@ -70,25 +70,25 @@ get_scan_count(){
 }
 ```
 
-3、 `may_deactivate`是一个长度为 2 位的无符号整型变量。两个位的变量可以用来表示四种状态的信息，分别是是否deactivate文件页（高位）和是否deactivate匿名页（低位），如果你需要deactivate匿名页的时候，使用或运算做标记（sc->may_deactivate |= DEACTIVATE_ANON）; 如果不需要deactivate匿名页，则需要使用与运算取消标记。（sc->may_deactivate &= ~DEACTIVATE_ANON）。
+3、 `may_deactivate`是一个长度为 2 位的无符号整型变量。两个位的变量可以用来表示四种状态的信息，分别是是否`deactivate`文件页（高位）和是否`deactivate`匿名页（低位），如果你需要deactivate匿名页的时候，使用或运算做标记（`sc->may_deactivate |= DEACTIVATE_ANON`）; 如果不需要deactivate匿名页，则需要使用与运算取消标记。（`sc->may_deactivate &= ~DEACTIVATE_ANON`）。
 
 对于这个标记的解释，我认为可以分为两个阶段，一个是标记阶段，一个是使用阶段。
 
 标记阶段
 
-
+……………………
 
 使用阶段
 
-
+……………………
 
 使用阶段一共有三处：
 
-第一处是shrink_list的过程中，如果文件页或匿名页被deactivate，对应的active LRU链表就会被回收，否则，则会跳过对应的LRU链表（如果跳过了，skipped_deactivate则会被标记）。
+第一处是`shrink_list`的过程中，如果文件页或匿名页被`deactivate`，对应的active LRU链表就会被回收，否则，则会跳过对应的LRU链表（如果跳过了，skipped_deactivate则会被标记）。
 
-第二处是在prepare_scan_count的过程中，
+第二处是在`prepare_scan_count`的过程中，
 
-第三处也是在prepare_scan_count的过程中，
+第三处也是在`prepare_scan_count`的过程中，
 
 ```c
 
