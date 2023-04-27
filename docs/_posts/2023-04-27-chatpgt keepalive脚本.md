@@ -23,6 +23,8 @@ date: 2023-04-10 15:32 +0800
   const max = 60;
   var interval_time = (Math.floor(Math.random() * (max - min + 1)) + min) * 1000;
   const sendRequest = () => {
+    // 随机一个间隔, 最小30s, 最大60s
+    interval_time = (Math.floor(Math.random() * (max - min + 1)) + min) * 1000;
     fetch(window.location.href, {
       method: 'GET',
       mode: 'cors',
@@ -31,7 +33,6 @@ date: 2023-04-10 15:32 +0800
       redirect: 'follow',
       referrerPolicy: 'no-referrer'
     }).then(response => {
-      interval_time = (Math.floor(Math.random() * (max - min + 1)) + min) * 1000;
       if (response.status === 403) {
         window.location.reload();
       }

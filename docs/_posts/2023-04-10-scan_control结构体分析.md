@@ -72,23 +72,31 @@ get_scan_count(){
 
 3、 `may_deactivate`是一个长度为 2 位的无符号整型变量。两个位的变量可以用来表示四种状态的信息，分别是是否`deactivate`文件页（高位）和是否`deactivate`匿名页（低位），如果你需要deactivate匿名页的时候，使用或运算做标记（`sc->may_deactivate |= DEACTIVATE_ANON`）; 如果不需要deactivate匿名页，则需要使用与运算取消标记。（`sc->may_deactivate &= ~DEACTIVATE_ANON`）。
 
-对于这个标记的解释，我认为可以分为两个阶段，一个是标记阶段，一个是使用阶段。
+这个标志位在回收前会被标记，在shrink_list的过程中会被使用。
 
-标记阶段
+**回收内存前**， 在prepare_scan_count中
 
-……………………
+- 如果满足条件： LRU链表中的inactive的比例比较低的时候（`inactive_is_low(target_lruvec, LRU_INACTIVE_ANON)`）或者
 
-使用阶段
+最近在此LRU上发生了匿名页的访问的fault，则将sc->may_deactivate标记为DEACTIVATE_ANON，同理，文件页也同样如此。
 
-……………………
+- 如果sc->force_deactivate被标记为true时，sc->may_deactivate会同时被标为匿名页和文件的deactivate状态。
 
-使用阶段一共有三处：
+**回收过程中**
 
-第一处是`shrink_list`的过程中，如果文件页或匿名页被`deactivate`，对应的active LRU链表就会被回收，否则，则会跳过对应的LRU链表（如果跳过了，skipped_deactivate则会被标记）。
+在`shrink_list()`的过程中，如果文件页或匿名页被`deactivate`，对应的active LRU链表就会被回收，否则，则会跳过对应的LRU链表（如果跳过了，skipped_deactivate则会被标记）。
 
-第二处是在`prepare_scan_count`的过程中，
 
-第三处也是在`prepare_scan_count`的过程中，
+
+4、**force_deactivate标志位**
+
+在`do_try_to_free_pages()`中如果`sc->skipped_deactivate`标志位之前已经被标记过了，那么此时会被标记位`force_deactivate`状态。
+
+5、**skipped_deactivate标志位**
+
+如果在`shrink_list`过程中，如果跳过了对于activate_List的回收，那么这个标志位将会被标记位true，在`do_try_to_free_pages()`的过程当中，如果这个标记位被标记位true，那么force_deactivate标志位则会被标记位true，之后此标志位就会恢复位false状态。
+
+6、
 
 ```c
 
