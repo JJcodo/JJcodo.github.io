@@ -14,11 +14,40 @@ date: 2023-04-10 15:32 +0800
 
 按下F12，打开开发者模式，将脚本复制到console运行即可
 
-### 仓库地址：
+### 改造脚本：
+
+```javascript
+(function() {
+  'use strict';
+  const min = 30;
+  const max = 60;
+  var interval_time = (Math.floor(Math.random() * (max - min + 1)) + min) * 1000;
+  const sendRequest = () => {
+    fetch(window.location.href, {
+      method: 'GET',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      redirect: 'follow',
+      referrerPolicy: 'no-referrer'
+    }).then(response => {
+      interval_time = (Math.floor(Math.random() * (max - min + 1)) + min) * 1000;
+      if (response.status === 403) {
+        window.location.reload();
+      }
+    });
+  };
+  setInterval(sendRequest, interval_time);
+})();
+```
+
+
+
+### 参考仓库地址：
 
 [GitHub - zhdzb/chatGPT-keepBreath: chatgpt经常因为断开连接需要刷新，简单的使用油猴脚本定期检测其连接状态，保持网页活性，如果连接中断自动刷新。](https://github.com/zhdzb/chatGPT-keepBreath)
 
-### 源代码：
+### 参考脚本：
 
 ```javascript
 / ==UserScript==
@@ -35,7 +64,7 @@ date: 2023-04-10 15:32 +0800
 (function() {
   'use strict';
   // 请求间隔时间（单位：毫秒）
-  const INTERVAL_TIME = 1000 * 60 * 1;
+  const INTERVAL_TIME = 1000 * 30 * 1;
   console.log('开始计时' + INTERVAL_TIME + 'ms');
   // 发送请求函数
   const sendRequest = () => {
@@ -64,7 +93,7 @@ date: 2023-04-10 15:32 +0800
   } else {
     // 如果处于隐藏状态，每 30 分钟发送一个请求
     console.log('当前处于后台，30分钟发送给一个请求保持网页活动');
-    setInterval(sendRequest, INTERVAL_TIME * 30);
+    setInterval(sendRequest, INTERVAL_TIME);
   }
 
   // 添加可见性状态改变事件的监听器
@@ -75,8 +104,8 @@ date: 2023-04-10 15:32 +0800
       setInterval(sendRequest, INTERVAL_TIME);
     } else {
       // 如果处于隐藏状态，每 30 分钟发送一个请求
-      console.log('当前处于后台，30分钟发送给一个请求保持网页活动');
-      setInterval(sendRequest, INTERVAL_TIME * 30);
+      console.log('当前处于后台，秒发送给一个请求保持网页活动');
+      setInterval(sendRequest, INTERVAL_TIME);
     }
   });
 })();
