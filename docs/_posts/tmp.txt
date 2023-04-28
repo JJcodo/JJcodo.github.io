@@ -1,1 +1,3 @@
 bundle exec jekyll post "New Post" -d "{{ "now" | date: "%Y-%m-%d" }}"
+
+git add . ; git commit -m "post" ; git push --force origin pages
