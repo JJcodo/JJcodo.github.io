@@ -41,7 +41,7 @@ layout: default
   <h2>Related posts</h2>
   <ul class="related-posts">
     {% for post in site.related_posts limit:3 %}
-    Last updated on {{ site.time | date: '%Y-%m-%d %H:%M:%S %z' }}.
+    <span> Last updated on {{ site.time | date: '%Y-%m-%d %H:%M:%S %z' }}. </span>
       <li>
         <a href="{{ post.url | relative_url }}">
           {{ post.title }}
