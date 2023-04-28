@@ -47,3 +47,5 @@ author:
   name: Daniel
   url: https://jjcodo.github.io/
   email: danielcoder@foxmail.com
+collections:
+  output: true

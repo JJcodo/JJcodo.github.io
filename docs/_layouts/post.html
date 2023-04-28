@@ -31,7 +31,7 @@ layout: default
   {% if page.tags %}
     {% include post-tags.html %}
   {% endif %}
-  <span class="last-updated">Last updated on {{ page.date | date: '%Y-%m-%d %H:%M:%S %z' }}.</span>
+  <span class="last-updated">Last updated on {{ page.last_modified_at  | date: '%Y-%m-%d %H:%M:%S %z' }}.</span>
   {% if jekyll.environment == "production" and site.disqus and page.comments != false %}
     {% include disqus.html %}
   {% endif %}
