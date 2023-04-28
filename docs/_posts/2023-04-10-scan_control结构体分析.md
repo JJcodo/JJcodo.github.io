@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 从scan_control结构体的角度看内存回收
-date: 2023-04-15 23:18 +0800
+date: {{ site.time | date: '%Y-%m-%d %H:%M:%S' }}
 tag: [Linux内核, 结构体分析]
 toc: true
 ---
