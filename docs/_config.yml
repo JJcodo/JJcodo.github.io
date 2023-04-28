@@ -49,5 +49,12 @@ author:
   email: danielcoder@foxmail.com
 
 lucene_enabled: false
-collections:
-  output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "collections"
+    values:
+      output: true
+github:
+  is_project_page: false
