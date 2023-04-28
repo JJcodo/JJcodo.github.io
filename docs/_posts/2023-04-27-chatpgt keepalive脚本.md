@@ -25,6 +25,7 @@ date: 2023-04-10 15:32 +0800
   const sendRequest = () => {
     // 随机一个间隔, 最小30s, 最大60s
     interval_time = (Math.floor(Math.random() * (max - min + 1)) + min) * 1000;
+    console.log('下次的时间间隔是 ' + interval_time);
     fetch(window.location.href, {
       method: 'GET',
       mode: 'cors',
@@ -33,6 +34,7 @@ date: 2023-04-10 15:32 +0800
       redirect: 'follow',
       referrerPolicy: 'no-referrer'
     }).then(response => {
+      
       if (response.status === 403) {
         window.location.reload();
       }
