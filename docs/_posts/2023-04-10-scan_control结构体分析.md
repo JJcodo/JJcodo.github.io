@@ -102,7 +102,13 @@ get_scan_count(){
 
 如果在`shrink_list`过程中，如果跳过了对于activate_List的回收，那么这个标志位将会被标记位true，在`do_try_to_free_pages()`的过程当中，如果这个标记位被标记位true，那么force_deactivate标志位则会被标记位true，之后此标志位就会恢复位false状态。
 
-6、
+6、**may_writepage标志位**
+
+当该标志位被设置时，表示当前系统可以尝试写回一些页面到磁盘中，从而释放出这些页面占用的内存空间。反之，当该标志位未被设置时，则表示系统不允许进行写回操作。这个标志位会受到一种叫做laptop_mode的模式影响，这个标志位被此节点控制/proc/sys/vm/laptop_mode，当laptop_mode为true的时候，may_writepage则会在`try_to_free_mem_cgroup_pages`、`try_to_free_pages`和`mem_cgroup_shrink_node`的函数执行过程中被设置为false。
+
+当回收的优先级小于10的时候，这个标志位会被设置为true。
+
+7、
 
 ```c
 
