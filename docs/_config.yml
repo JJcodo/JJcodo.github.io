@@ -51,11 +51,5 @@ author:
 
 lucene_enabled: false
 
-defaults:
-  - scope:
-      path: ""
-      type: "collections"
-    values:
-      output: true
 github:
   is_project_page: false
