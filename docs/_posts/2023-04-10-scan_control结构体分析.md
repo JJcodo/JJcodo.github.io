@@ -12,7 +12,9 @@ scan结构体作为一个特殊的结构，贯穿整个kswapd的内存回收过�
 
 ​		源代码中scan_control 结构体的每个成员的定义都有着详细的注释，这里为了使文章内存更加简短，删除了许多注释。
 
-1、nr_to_reclaim的设置使用的是kswapd的高水线，其含义是kswapd应该回收多少内存，如果扫描的数量小于要回收的内存页就会增加回收的优先级。也就是priority的值会增加。
+1、**nr_to_reclaim成员**
+
+nr_to_reclaim的设置使用的是kswapd的高水线，其含义是kswapd应该回收多少内存，如果扫描的数量小于要回收的内存页就会增加回收的优先级。也就是priority的值会增加。
 
 ```c
 kswapd_shrink_node
@@ -21,7 +23,9 @@ kswapd_shrink_node
 	return sc->nr_scanned >= sc->nr_to_reclaim;
 ```
 
-2、target_mem_cgroup记录的是要回收的目标memcg，目前此节点已经不再起作用的，他记录的是memcg根节点的memcg的地址,其设置路劲如下所示,但是这个节点是root节点。
+2、**target_mem_cgroup成员**
+
+target_mem_cgroup记录的是要回收的目标memcg，目前此节点已经不再起作用的，他记录的是memcg根节点的memcg的地址,其设置路劲如下所示,但是这个节点是root节点。
 
 ```
 shrink_node
@@ -30,7 +34,7 @@ shrink_node
 			sc->target_mem_cgroup = root_mem_cgroup;
 ```
 
-3、anon_cost和file_cost
+3、**anon_cost和file_cost**
 
 ​		`anon_cost`参数是指扫描匿名内存所需的成本，而`file_cost`参数是指扫描文件所需的成本。
 
@@ -70,7 +74,9 @@ get_scan_count(){
 }
 ```
 
-3、 `may_deactivate`是一个长度为 2 位的无符号整型变量。两个位的变量可以用来表示四种状态的信息，分别是是否`deactivate`文件页（高位）和是否`deactivate`匿名页（低位），如果你需要deactivate匿名页的时候，使用或运算做标记（`sc->may_deactivate |= DEACTIVATE_ANON`）; 如果不需要deactivate匿名页，则需要使用与运算取消标记。（`sc->may_deactivate &= ~DEACTIVATE_ANON`）。
+3、**may_deactivate标志位**
+
+ `may_deactivate`是一个长度为 2 位的无符号整型变量。两个位的变量可以用来表示四种状态的信息，分别是是否`deactivate`文件页（高位）和是否`deactivate`匿名页（低位），如果你需要deactivate匿名页的时候，使用或运算做标记（`sc->may_deactivate |= DEACTIVATE_ANON`）; 如果不需要deactivate匿名页，则需要使用与运算取消标记。（`sc->may_deactivate &= ~DEACTIVATE_ANON`）。
 
 这个标志位在回收前会被标记，在shrink_list的过程中会被使用。
 
