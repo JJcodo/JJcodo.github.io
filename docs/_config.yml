@@ -11,12 +11,12 @@ last_modified_at:
   date_format: "%Y-%m-%d %H:%M:%S %z"
 # Gems
 plugins:
+  - jekyll-last-modified-at
   - jekyll-gist
   - jekyll-paginate
   - jekyll-seo-tag
   - jekyll-feed
   - jekyll-sitemap
-  - jekyll-last-modified-at
 # Optimize Jekyll
 exclude:
   - .editorconfig
