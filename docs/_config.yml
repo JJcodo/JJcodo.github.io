@@ -6,6 +6,7 @@ avatar: /avatar.jpeg
 paginate: 10
 permalink: pretty
 cover_image: /bg.jpeg
+timezone: Asia/Shanghai
 
 # Gems
 plugins:

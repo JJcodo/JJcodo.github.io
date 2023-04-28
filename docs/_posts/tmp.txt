@@ -1,0 +1,1 @@
+bundle exec jekyll post "New Post" -d "{{ "now" | date: "%Y-%m-%d" }}"
