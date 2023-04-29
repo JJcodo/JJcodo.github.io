@@ -2,6 +2,7 @@
 layout: default
 ---
 
+<script src="{{ '/assets/js/back-to-top.js' | relative_url }}"></script>
 
 <article class="post">
   <h1 class="post-title">{{ page.title }}</h1>
@@ -26,25 +27,41 @@ layout: default
     {%- endif -%}
   </div>
 
-  {{ content }}
-
+  <div class="context">
+    {{ content }}
+  </div>
   {% if page.tags %}
     {% include post-tags.html %}
   {% endif %}
-  <span class="last-updated">Last updated on {{ page.last_modified_at  | date: '%Y-%m-%d %H:%M:%S %z' }}.</span>
   {% if jekyll.environment == "production" and site.disqus and page.comments != false %}
     {% include disqus.html %}
   {% endif %}
+  <div>
+    <a id="back-to-top" href="#">
+      <i class="fas fa-arrow-up fa-fw" 
+          style="
+          color: black;
+          font-size: 25px;
+          position: absolute;
+          top: 50%; left: 50%;
+          transform: translate(-50%, -50%);">
+      </i>
+    </a>
+  </div>
+  <div class="last_modified_time">
+    <span class="last-updated">Last updated on {{ page.last_modified_at  | date: '%Y-%m-%d %H:%M:%S %z' }}</span>
+  </div>
 </article>
 
 {% if site.related_posts != empty %}
 <aside class="related">
-  <h2>Related posts</h2>
+  <h2>最近的文章</h2>
   <ul class="related-posts">
     {% for post in site.related_posts limit:3 %}
       <li>
         <a href="{{ post.url | relative_url }}">
           {{ post.title }}
+
           <small><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time></small>
         </a>
       </li>
