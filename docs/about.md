@@ -1,1 +1,6 @@
-Some notes and thoughts about linux kernel
+---
+layout: about
+permalink: /about/
+title: about page
+---
+

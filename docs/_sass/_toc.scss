@@ -1,5 +1,6 @@
 // Table of Contents
-
+$toc-item-hover-color: rgba(157, 157, 158, 0.966);
+$debug-color:rgba(3, 3, 255, 0.966);
 .toc-wrapper {
   display: inline-block;
   position: sticky;
@@ -30,7 +31,6 @@
   border-top: 0px;
   border-radius: 0 0 0.3em 0.3em;
   border-color: var(--border-color);
-
   -webkit-hyphens: auto;
       -ms-hyphens: auto;
           hyphens: auto;
@@ -42,9 +42,14 @@
 
   a {
     padding: 0;
-    margin: 0;
+    margin: 5px;
     display: block;
     text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    &:hover{
+      background-color: $toc-item-hover-color;
+      transform: translateY(-5px);
+    }
   }
 
   ul {
@@ -58,7 +63,8 @@
         padding-bottom: .2em;
         padding-left: .5em;
         padding-right: .5em;
-        border-bottom: 1px solid var(--border-color);
+        border-radius: 2px;
+        box-shadow: 0 0 2px rgba(73, 68, 68, 0.3);
       }
     }
   }

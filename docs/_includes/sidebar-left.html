@@ -9,14 +9,14 @@
       <img src="{{ avatar }}" class="avatar-image" alt="{{ site.author.name }}">
     </div>
   {%- endif %}
-  <div class="masthead-title">
+  <div class="masthead-title items-hide">
     <a href="{{ "/" | relative_url }}" title="Home">{{ site.title }}</a>
   </div>
-  <div class="masthead-tagline">
+  <div class="masthead-tagline items-hide">
     <small>{{ site.description }}</small>
   </div>
   {%- if site.data.navigation -%}
-  <nav class="navigation">
+  <nav class="navigation items-hide">
     <ul class="navigation-list">
     {%- for nav in site.data.navigation -%}
       <li class="navigation-item">
@@ -27,7 +27,7 @@
   </nav>
   {%- endif -%}
   {% if site.data.social -%}
-    <div class="social pure-menu pure-menu-horizontal">
+    <div class="social pure-menu pure-menu-horizontal items-hide">
       <ul class="social-icons pure-menu-list">
       {% for social in site.data.social -%}
         <li class="pure-menu-item">
@@ -40,3 +40,17 @@
     </div>
   {%- endif %}
 </header>
+<!-- <script src="assets/js/html2canvas.min.js"></script> -->
+<script>
+window.onload = function() {
+  console.log('所有资源加载完成 ');
+  var content1 = document.querySelector('.masthead-title');
+  content1.classList.remove('items-hide');
+  var content2 = document.querySelector('.masthead-tagline');
+  content2.classList.remove('items-hide');
+  var content3 = document.querySelector('.navigation');
+  content3.classList.remove('items-hide');
+  var content4 = document.querySelector('.social');
+  content4.classList.remove('items-hide');
+}
+</script>

@@ -2,7 +2,8 @@
 //
 // Each post is wrapped in `.post` and is used on default and post layouts. Each
 // page is wrapped in `.page` and is only used on the page layout.
-
+$post-item-hover-color: rgba(157, 157, 158, 0.966);
+$debug-color:rgba(3, 3, 255, 0.966);
 .post-entry {
   border-bottom: 1px solid var(--border-color);
   margin-bottom: var(--spacer-3);
@@ -26,7 +27,7 @@
   position: relative;
 }
 .last-updated:hover {
-  background-color: rgba(157, 157, 158, 0.966);
+  background-color: $post-item-hover-color;
   color: rgb(11, 10, 10);
   transform: translateY(-5px);
 }
@@ -94,7 +95,7 @@
 #back-to-top {
   position: fixed;
   bottom: 100px;
-  right: 25%;
+  right: 23%;
   background-color: #ffffff;
   border: 2px solid #000000;
   border-radius: 50%;
@@ -105,7 +106,7 @@
   height: 50px;
 }
 #back-to-top:hover {
-  background-color: #beb2b2;
+  background-color:$post-item-hover-color;
   color: #ffffff;
   transform: translateY(-5px);
 }
@@ -152,7 +153,10 @@
   li {
     display: inline-block;
     margin-right: var(--spacer);
-
+    transition: transform 0.2s ease-in-out;
+    &:hover{
+      transform: translateY(-5px);
+    }
     a {
       color: inherit;
       text-decoration: none;
@@ -160,7 +164,7 @@
       &:hover,
       &:focus {
         color: var(--body-bg);
-        background-color: var(--link-hover-color);
+        background-color: $post-item-hover-color;
       }
     }
   }
@@ -170,4 +174,8 @@
   padding: .1em .5em;
   border: 1px solid var(--border-color);
   border-radius: .5em;
+}
+
+.post-tag:hover{
+  background-color: $post-item-hover-color;
 }

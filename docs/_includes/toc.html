@@ -104,7 +104,10 @@
         {% endfor %}
 
         {% if include.item_class and include.item_class != blank %}
-            {% capture listItemClass %}{:.{{ include.item_class | replace: '%level%', headerLevel }}}{% endcapture %}
+            <div >
+                {% capture listItemClass %}{:.{{ include.item_class | replace: '%level%', headerLevel }}}{% endcapture %}
+            </div>
+            
         {% endif %}
 
         {% capture anchor_body %}{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}{% endcapture %}

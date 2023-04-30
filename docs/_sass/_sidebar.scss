@@ -1,12 +1,10 @@
 // Sidebar
 //
 // Styles for the sidebar.
-
 .masthead {
   text-align: center;
   margin: auto;
   width: 100%;
-
   a {
     color: inherit;
     text-decoration: none;
@@ -21,7 +19,9 @@
   margin-right: auto;
   margin-left: auto;
 }
-
+.items-hide {
+  visibility: hidden;
+}
 .masthead-title {
   padding: 0;
   margin: 0;
