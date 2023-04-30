@@ -1,6 +1,6 @@
 - type: home_page
   title: 首页
-  url: /#/
+  url: /
 - type: dates
   title: 日期
   url: /dates/
