@@ -6,7 +6,7 @@ layout: default
 <article class="post">
   <h1 class="post-title">{{ page.title }}</h1>
   <div class="post-meta">
-    {%- assign date_format = site.date_format | default: "%-d %b %Y" -%}
+    {%- assign date_format = site.date_format | default: "%Y-%m-%d " -%}
     <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: date_format }}</time>
     {%- if page.last_modified_at -%}
       <span> ~ </span>
@@ -48,7 +48,7 @@ layout: default
     </a>
   </div>
   <div class="last_modified_time">
-    <span class="last-updated">Last updated on {{ page.last_modified_at  | date: '%Y-%m-%d %H:%M:%S' }}</span>
+    <span class="last-updated event-hover">Last updated on {{ page.last_modified_at  | date: '%Y-%m-%d %H:%M:%S' }}</span>
   </div>
 </article>
 

@@ -5,31 +5,33 @@
 $post-item-hover-color: rgba(157, 157, 158, 0.966);
 $debug-color:rgba(3, 3, 255, 0.966);
 .post-entry {
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px groove #ccc;
   margin-bottom: var(--spacer-3);
 }
 .context {
   display: block;
 }
+.event-hover{
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out;
+}
+.event-hover:hover{
+  background-color: $post-item-hover-color;
+  color: rgb(11, 10, 10);
+  transform: translateY(-5px);
+}
 .last-updated {
   text-align: right;
   color: #999;
   font-size:14px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
 }
 .last_modified_time {
   display: flex;
   justify-content: flex-end;
   position: relative;
-}
-.last-updated:hover {
-  background-color: $post-item-hover-color;
-  color: rgb(11, 10, 10);
-  transform: translateY(-5px);
 }
 .page,
 .post {
@@ -50,6 +52,10 @@ $debug-color:rgba(3, 3, 255, 0.966);
 .page-title,
 .post-title {
   color: var(--heading-color);
+  transition: transform 0.3s ease-in-out;
+  &:hover{
+    transform: translateY(-2px);
+  }
 }
 .page-title,
 .post-title {
