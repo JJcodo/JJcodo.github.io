@@ -2,8 +2,6 @@
 //
 // Each post is wrapped in `.post` and is used on default and post layouts. Each
 // page is wrapped in `.page` and is only used on the page layout.
-$post-item-hover-color: rgba(157, 157, 158, 0.966);
-$debug-color:rgba(3, 3, 255, 0.966);
 .post-entry {
   border-bottom: 1px groove #ccc;
   margin-bottom: var(--spacer-3);
@@ -18,7 +16,7 @@ $debug-color:rgba(3, 3, 255, 0.966);
   transition: transform 0.2s ease-in-out;
 }
 .event-hover:hover{
-  background-color: $post-item-hover-color;
+  background-color: var(--hover-color);
   color: rgb(11, 10, 10);
   transform: translateY(-5px);
 }
@@ -112,7 +110,7 @@ $debug-color:rgba(3, 3, 255, 0.966);
   height: 50px;
 }
 #back-to-top:hover {
-  background-color:$post-item-hover-color;
+  background-color:var(--hover-color);
   color: #ffffff;
   transform: translateY(-5px);
 }
@@ -170,7 +168,7 @@ $debug-color:rgba(3, 3, 255, 0.966);
       &:hover,
       &:focus {
         color: var(--body-bg);
-        background-color: $post-item-hover-color;
+        background-color: var(--hover-color);
       }
     }
   }
@@ -182,6 +180,49 @@ $debug-color:rgba(3, 3, 255, 0.966);
   border-radius: .5em;
 }
 
+
 .post-tag:hover{
-  background-color: $post-item-hover-color;
+  background-color: var(--hover-color);
+}
+
+// // rouge 高亮
+// .highlight {
+//   background-color: #f8f8f8;
+//   border: 1px solid #cccccc;
+//   border-radius: 4px;
+//   font-size: 85%;
+//   margin-bottom: 1rem;
+//   padding: 1em;
+//   overflow: auto;
+// }
+// .highlight pre {
+//   margin: 0;
+//   padding: 0;
+//   overflow: initial;
+//   float: left; /* 或者 display:table，根据需要选择其中一种 */
+// }
+.code-block-parent {
+  position: relative;
+}
+@keyframes bounce {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(0, -5px); }
+  50% { transform: translate(0, 0); }
+  75% { transform: translate(0, 5px); }
+  100% { transform: translate(0, 0); }
+}
+
+.copy-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 20px; // 根据需要调整
+  padding: 10px;   // 根据需要调整
+}
+.copy-button:hover {
+  color: #007BFF; // 根据需要调整
+  animation: bounce 0.5s;
 }

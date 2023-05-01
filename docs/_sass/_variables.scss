@@ -9,7 +9,7 @@
   --gray-700: #495057;
   --gray-800: #343a40;
   --gray-900: #212529;
-
+  --black:#000000;
   --red: #fa5252;
   --pink: #e64980;
   --grape: #be4bdb;
@@ -43,9 +43,9 @@
   --border-radius: .25rem;
 
   --code-font: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --code-color: var(--grape);
-  --code-bg: #fbf1c7;
-
+  --code-color: var(--black);
+  --code-bg: var(--gray-000);
+  --hover-color: var(--gray-500);
   --spacer: 1rem;
   --spacer-2: calc(var(--spacer) * 1.5);
   --spacer-3: calc(var(--spacer) * 3);

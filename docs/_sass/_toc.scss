@@ -1,6 +1,4 @@
 // Table of Contents
-$toc-item-hover-color: rgba(157, 157, 158, 0.966);
-$debug-color:rgba(3, 3, 255, 0.966);
 .toc-wrapper {
   display: inline-block;
   position: sticky;
@@ -47,7 +45,7 @@ $debug-color:rgba(3, 3, 255, 0.966);
     text-decoration: none;
     transition: all 0.3s ease-in-out;
     &:hover{
-      background-color: $toc-item-hover-color;
+      background-color: var(--hover-color);
       transform: translateY(-5px);
     }
   }

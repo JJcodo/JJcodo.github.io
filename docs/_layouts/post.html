@@ -68,3 +68,26 @@ layout: default
   </ul>
 </aside>
 {% endif %}
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+<script>
+$(document).ready(function() {
+    // 初始化阶段
+    $("pre code").parent().addClass("code-block-parent");
+    $('pre code').each(function() {
+        var button = $('<button class="copy-button" onclick="copyToClipboard(this)">');
+        $(this).before(button);
+    });
+
+    $(".copy-button").html('<i class="fa fa-copy"></i>');
+});
+function copyToClipboard(button) {
+    var code = button.nextElementSibling.textContent;
+    navigator.clipboard.writeText(code);
+    button.innerHTML = '<i class="fa fa-check"></i>'; // 更换图标为“确认”图标
+    setTimeout(function() {
+      button.innerHTML = '<i class="fa fa-copy"></i>'; // 一段时间后恢复为“复制”图标
+    }, 3000);
+  }
+</script>
