@@ -96,12 +96,12 @@ $(document).on('click', 'a', function(event) {
   $('#content').animate({
     marginLeft: '-=1000px',
     opacity: 0
-  }, 'slow', function() {
+  }, 6000, function() {
     $(this).load(url + ' #content', function() {
       $(this).css('marginLeft', '1000px').animate({
         marginLeft: '0',
         opacity: 1
-      }, 'slow');
+      }, 6000);
     });
   });
 });
