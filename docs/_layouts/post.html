@@ -90,21 +90,21 @@ function copyToClipboard(button) {
       button.innerHTML = '<i class="fa fa-copy"></i>'; // 一段时间后恢复为“复制”图标
     }, 3000);
 }
-$(document).on('click', 'a', function(event) {
-  event.preventDefault();
-  var url = $(this).attr('href');
-  $('#content').animate({
-    marginLeft: '-=1000px',
-    opacity: 0
-  }, 6000, function() {
-    $(this).load(url + ' #content', function() {
-      $(this).css('marginLeft', '1000px').animate({
-        marginLeft: '0',
-        opacity: 1
-      }, 6000);
-    });
-  });
-});
+// $(document).on('click', 'a', function(event) {
+//   event.preventDefault();
+//   var url = $(this).attr('href');
+//   $('#content').animate({
+//     marginLeft: '-=1000px',
+//     opacity: 0
+//   }, 6000, function() {
+//     $(this).load(url + ' #content', function() {
+//       $(this).css('marginLeft', '1000px').animate({
+//         marginLeft: '0',
+//         opacity: 1
+//       }, 6000);
+//     });
+//   });
+// });
 
 
 </script>
