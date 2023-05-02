@@ -228,7 +228,5 @@ sudo apt-get install gdb-multiarch
 }
 ```
 
-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
-
 这个文章很详细，[点击这里](https://zhuanlan.zhihu.com/p/510289859)，完全可用，感谢[Jason](https://github.com/ridiJason)  :smile:
 
