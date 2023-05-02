@@ -118,6 +118,12 @@ sudo make install
 #### 启动内核
 
 ```shell
+#-m 512M 内存为512M
+#-smp 4 4核
+#-cpu cortex-a57cpu 为cortex-a57
+#-kernel kernel镜像文件
+#-nographic禁止图形输出
+#-s监听gdb端口， gdb程序可以通过1234这个端口连上来。
 /usr/local/bin/qemu-system-aarch64 -m 512M -smp 4 -cpu cortex-a57 -machine virt -kernel arch/arm64/boot/Image -append "rdinit=/linuxrc nokaslr console=ttyAMA0 loglevel=8" -nographic -s
 ```
 
@@ -143,19 +149,17 @@ touch 0
 
 - 第一步
 
-![image-20230502134601468](assets/image-20230502134601468.png)
+![image-20230502134601468](https://cdn.jsdelivr.net/gh/JJcodo/Pictures@main/blog_picture/image-20230502134601468.png)
 
-```shell
 
-```
 
 - 第二步
 
-![image-20230502134704241](assets/image-20230502134704241.png)
+![image-20230502134704241](https://cdn.jsdelivr.net/gh/JJcodo/Pictures@main/blog_picture/image-20230502134704241.png)
 
 - 第三步- 添加配置文件，配置文件如图所示
 
-  ![image-20230502134918567](assets/image-20230502134918567.png)、
+  ![image-20230502134918567](https://cdn.jsdelivr.net/gh/JJcodo/Pictures@main/blog_picture/image-20230502134918567.png)
 
 ```shell
 #自动启动配置
@@ -194,9 +198,10 @@ sudo systemctl enable vscode-server
 
 #### 虚拟机安装gdb-multiarch
 
-gdb-multiarch支持多种架构的调试
+
 
 ```shell
+#gdb-multiarch支持多种架构的调试
 sudo apt-get install gdb-multiarch
 ```
 
@@ -223,7 +228,7 @@ sudo apt-get install gdb-multiarch
 }
 ```
 
-
+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
 
 这个文章很详细，[点击这里](https://zhuanlan.zhihu.com/p/510289859)，完全可用，感谢[Jason](https://github.com/ridiJason)  :smile:
 
