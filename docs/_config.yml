@@ -10,6 +10,7 @@ timezone: Asia/Shanghai
 last_modified_at:
   date_format: "%Y-%m-%d %H:%M:%S %z"
 # Gems
+
 plugins:
   - jekyll-last-modified-at
   - jekyll-paginate
@@ -27,6 +28,18 @@ plugins:
   - jekyll-remote-theme
   - jekyll-timeago
   - rouge
+
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  enable_coderay: false
+  syntax_highlighter: rouge
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+
 highlighter: rouge
 # Optimize Jekyll
 exclude:
@@ -64,3 +77,5 @@ lucene_enabled: false
 
 github:
   is_project_page: false
+
+
