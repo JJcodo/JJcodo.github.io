@@ -29,16 +29,23 @@ plugins:
   - jekyll-timeago
   - rouge
 
-kramdown:
+# gems:
+#   - jekyll-paginate-v2
+# exclude:
+#   - jekyll-spaceship
+
+markdown: markdown-it
+markdown-it:
   input: GFM
-  hard_wrap: false
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  enable_coderay: false
-  syntax_highlighter: rouge
-  smart_quotes: lsquo,rsquo,ldquo,rdquo
+# kramdown:
+#   input: GFM
+#   auto_ids: true
+#   footnote_nr: 1
+#   entity_output: as_char
+#   toc_levels: 1..6
+#   enable_coderay: false
+#   syntax_highlighter: rouge
+#   smart_quotes: lsquo,rsquo,ldquo,rdquo
 
 highlighter: rouge
 # Optimize Jekyll
