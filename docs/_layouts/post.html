@@ -86,21 +86,19 @@ function copyToClipboard(button) {
     var code = button.nextElementSibling.textContent;
     navigator.clipboard.writeText(code);
     button.innerHTML = '<i class="fa fa-check"></i>'; // 更换图标为“确认”图标
-    // var copyBackgroundColor = getComputedStyle(document.documentElement).getPropertyValue('-code-bg-copy');
-    // var backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--code-bg');
-    var codeBlock1 = button.parentNode.parentNode;
+    //var codeBlock1 = button.parentNode.parentNode;
     var codeBlock2 = button.parentNode;
     // --gray-000: #f8f9fa;
     // --gray-100: #f1f3f5;
     // --gray-200: #e9ecef;
     // --gray-300: #dee2e6;
-    codeBlock1.style.backgroundColor = '#dee2e6';
+    //codeBlock1.style.backgroundColor = '#dee2e6';
     codeBlock2.style.backgroundColor = '#dee2e6';
     setTimeout(function() {
       button.innerHTML = '<i class="fa fa-copy"></i>'; // 一段时间后恢复为“复制”图标
     }, 3000);
     setTimeout(function() {
-      codeBlock1.style.backgroundColor = '#f8f9fa';
+      //codeBlock1.style.backgroundColor = '#f8f9fa';
       codeBlock2.style.backgroundColor = '#f8f9fa'; 
     }, 1000);
 }
