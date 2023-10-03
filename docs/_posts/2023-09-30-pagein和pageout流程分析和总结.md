@@ -28,17 +28,17 @@ shrink_inactive_list
 				swap_writepage
                     __swap_writepage
                     	bdev_write_page
-						   // ops->rw_page是block_device_operations操作集
+							// ops->rw_page是block_device_operations操作集
                     		 ops->rw_page
                     			zram_bvec_rw
                     				zram_bvec_write
                     					__zram_bvec_write
-                    						// 压缩匿名页
-                    						ret = zcomp_compress(zstrm, src, &comp_len);
-										  // 使用zs_malloc分配压缩内存
-                    						handle = zs_malloc
-                    						// 压缩之后的匿名页拷贝到对应的压缩页当中	
-                                              memcpy(dst, src, comp_len);
+											// 压缩匿名页
+											ret = zcomp_compress(zstrm, src, &comp_len);
+											// 使用zs_malloc分配压缩内存
+											handle = zs_malloc
+											// 压缩之后的匿名页拷贝到对应的压缩页当中	
+											memcpy(dst, src, comp_len);
 /*
 * 从mapping->a_ops->writepage到swap_writepage
 */
@@ -96,7 +96,7 @@ do_page_fault
 
 ​        
 
-​     在阅读pageout流程代码中，我对page_mapping中使用对PageSwapCache使用unlikely关键字表示了疑惑，难道匿名页的回收概率很小吗？（需要尝试统计一下）
+​     在阅读pageout流程代码中，我对page_mapping中使用对PageSwapCache使用unlikely关键字表示了疑惑，难道匿名页的回收概率很小吗？（需要统计一下）
 
 ```c
 struct address_space *page_mapping(struct page *page)
