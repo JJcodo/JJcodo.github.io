@@ -5,7 +5,7 @@ date: 2023-04-30 19:23
 last_modified_at: 2023-04-30 19:23 
 tags: [Linux内核,转载]
 author: Daniel
-toc: truec
+toc: true
 ---
 ### 常用命令
 
@@ -94,11 +94,36 @@ CONFIG_DEBUG_INFO=y
 CONFIG_INITRAMFS_SOURCE="./root"
 CONFIG_INITRAMFS_ROOT_UID=0
 CONFIG_INITRAMFS_ROOT_GID=0
+#根据需求查看是否需要打开下面配置项
+CONFIG_RANDOMIZE_BASE=n
+CONFIG_DEBUG_KERNEL=y
+CONFIG_DEBUG_SLAB=y
+CONFIG_DEBUG_PAGEALLOC=y
+CONFIG_DEBUG_SPINLOCK=y
+CONFIG_DEBUG_SPINLOCK_SLEEP=y
+CONFIG_INIT_DEBUG=y
 #将制作好的根文件系统cp到root目录下
 sudo cp -r ../busybox-1.33.1/_install root
 #执行编译命令
 make ARCH=arm64 Image -j8  CROSS_COMPILE=aarch64-linux-gnu-
 ```
+
+#### 编译内核相关
+
+```shell
+#删除编译的中间文件，保留配置文件
+make clean
+#删除包括配置文件的所有构建文件
+make mrproper
+#构建所有目标
+make all
+#构建内核映像
+make Image
+#构建所有驱动
+make modules
+```
+
+
 
 #### qemu的下载
 
