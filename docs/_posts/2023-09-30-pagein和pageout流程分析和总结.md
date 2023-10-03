@@ -123,7 +123,7 @@ struct address_space *page_mapping(struct page *page)
 }
 ```
 
-swap space 大小
+每个swap space 大小
 
 ```c
 static unsigned int nr_swapfiles;
