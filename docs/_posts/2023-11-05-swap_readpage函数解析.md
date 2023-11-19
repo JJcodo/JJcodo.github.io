@@ -3,14 +3,14 @@ layout: post
 title: swap_readpage函数注释
 date: 2023-11-05 14:55:05 
 last_modified_at: 2023-11-05 14:55:05 
-tags: [Linux内核、函数注释]
+tags: [Linux内核]
 author: Daniel
 toc: true
 description:增加函数的注释
 ---
 # swap_readpage函数注释
 
-增加函数的注释
+#### 增加函数的注释
 
 ```c
 static struct swap_info_struct *swap_type_to_swap_info(int type)
