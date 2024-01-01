@@ -1,15 +1,15 @@
 ---
 layout: post
-title: 内存相关的hook点记录
+title: pixel内存相关的hook点记录
 date: 2024-01-01 08:00:17 
 last_modified_at: 2024-01-01 08:00:18
 tags: [Linux内核]
 author: Daniel
 math: true
 toc: true
-description: 内存hook点相关函数记录
+description: pixel内存hook点相关函数记录
 ---
-# 内存相关的hook点记录
+# pixel内存相关的hook点记录
 
 ```c
 /*
