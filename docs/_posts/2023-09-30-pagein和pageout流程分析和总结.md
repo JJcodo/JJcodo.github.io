@@ -94,9 +94,49 @@ do_page_fault
 
 ```
 
-​        
 
-​     在阅读pageout流程代码中，我对page_mapping中使用对PageSwapCache使用unlikely关键字表示了疑惑，难道匿名页的回收概率很小吗？（需要统计一下）
+
+INTERVAL_TREE_DEFINE 
+
+区间树，anon_vma就是使用区间树来管理各个相同的vma
+
+page_referenced
+
+函数作用是：返回page的引用计数，page的引用计数反映了一个page被多少个vma_struct引用，匿名页和文件页使用不同的遍历函数，匿名页使用rmap_walk_anon，文件页使用rmap_walk_file，使用不同函数遍历的原因是文件页和匿名页使用不同的结构保存page,因此需要使用不同的锁保护。
+
+```c
+struct rb_root_cached {
+	struct rb_root rb_root;
+	struct rb_node *rb_leftmost;
+};
+
+struct anon_vma {
+	struct anon_vma *root;		/* Root of this anon_vma tree */
+	struct rw_semaphore rwsem;	/* W: modification, R: walking the list */
+	atomic_t refcount;
+	unsigned long num_children;
+	unsigned long num_active_vmas;
+	struct anon_vma *parent;	/* Parent of this anon_vma */
+	struct rb_root_cached rb_root;
+};
+                 
+//rmap_walk_anon简介
+rmap_walk_anon
+  anon_vma = (struct anon_vma *)(page->mapping - PAGE_MAPPING_ANON);
+  // 清楚PTE YOUNG的标志，这个标志会在清除的时候
+  // handle_pte_fault--> entry = pte_mkyoung(entry);
+  ptep_clear_flush_young_notify
+  if (referenced)  // 如果page正在被其他vma引用，则不应该标记位idle状态
+	clear_page_idle(page);  
+  if (test_and_clear_page_young(page))
+	referenced++;
+```
+
+匿名页是怎么管理page的
+
+
+
+文件页是怎么管理page的
 
 ```c
 struct address_space *page_mapping(struct page *page)
