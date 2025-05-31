@@ -16,7 +16,7 @@ yaml_header = <<~YAML
   tags: []
   author: Daniel
   toc: true
-  description:文章描述
+  description: 文章描述
   ---
 YAML
 
